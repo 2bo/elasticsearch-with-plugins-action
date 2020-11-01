@@ -7,10 +7,9 @@ if [[ -z $STACK_VERSION ]]; then
     exit 1
 fi
 
-#
 PLUGIN_INSTALL_CMD=""
 PLUGINS_STR=`echo ${PLUGINS} | sed -e 's/\n/ /g'`
-if [ -n "${PLUGINS_STR}"]; then
+if [ -n "${PLUGINS_STR}" ]; then
     ARRAY=(${PLUGINS_STR})
     for i in "${ARRAY[@]}"
     do
@@ -43,7 +42,7 @@ do
     --name="es${node}" \
     --entrypoint="" \
     docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION} \
-    /bin/sh -vc "${PLUGING_INSTALL_CMD} /usr/local/bin/docker-entrypoint.sh"
+    /bin/sh -vc "${PLUGIN_INSTALL_CMD} /usr/local/bin/docker-entrypoint.sh"
 done
 
 docker run \
@@ -55,9 +54,9 @@ docker run \
  --retry-delay 1 \
  --retry-connrefused \
  --show-error \
- --silient \
+ --silent \
  http://es1:9200
 
 sleep 10 
 
-echo "Elasticsearch up and runnnig"
+echo "Elasticsearch up and running"
