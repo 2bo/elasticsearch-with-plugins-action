@@ -18,11 +18,11 @@ inputs:
         description: 'Elasticsearch plugin strings'
         required: false
         default: ''
-    runs:
-        using: 'docker'
-        image: 'Dockerfile'
-        env:
-            STACK_VERSION: ${{ inputs.stack-version }}
-            NODES: ${{ inputs.nodes }}
-            PLUGINS: ${{ inputs.plugins }}
 
+runs:
+    using: 'docker'
+    image: 'Dockerfile'
+    env:
+        STACK_VERSION: ${{ inputs.stack-version }}
+        NODES: ${{ inputs.nodes }}
+        PLUGINS: ${{ inputs.plugins }}
